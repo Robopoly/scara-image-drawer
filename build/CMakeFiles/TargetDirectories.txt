@@ -1,1 +1,0 @@
-/home/adrien/scara-image-drawer/build/CMakeFiles/edge.dir
