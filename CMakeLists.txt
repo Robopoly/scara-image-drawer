@@ -1,5 +1,6 @@
 PROJECT( edge_detection )
 FIND_PACKAGE( OpenCV REQUIRED )
-ADD_EXECUTABLE( edge edge.cpp )
-TARGET_LINK_LIBRARIES( edge ${OpenCV_LIBS} )
-
+ADD_EXECUTABLE( edge_simple edge_simple.cpp )
+ADD_EXECUTABLE( edge_diff edge_diff.cpp )
+TARGET_LINK_LIBRARIES( edge_simple ${OpenCV_LIBS} )
+TARGET_LINK_LIBRARIES( edge_diff ${OpenCV_LIBS} )

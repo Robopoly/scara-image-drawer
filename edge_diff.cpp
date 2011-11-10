@@ -132,33 +132,23 @@ int main( int argc, const char** argv )
 	std::vector<Point>::size_type size, last;
 	
 	for(i = 0; i != contours.size(); i++) {
-		
 		segment = contours[i];
-		
 		size = segment.size();
-		/*if(size < 6)
-			continue;*/
+		
+		if(size < 5)
+			continue;
 		
 		cout << "Segment :" << endl;
-		//output_file  << endl  << endl << "  ; new segment" << endl;
-		//output_file << "MOVES origin:TRANS(" << x_to_robot(segment[0].y) << "," << y_to_robot(segment[0].x) << ",0)" << endl;
-		//output_file << "BREAK" << endl;
 		output_file << "CALL moveto(" << x_to_robot(segment[0].y) << "," << y_to_robot(segment[0].x) << ", 0)" << endl;
 		
-		last = min(size-1, size/2+4);///2;
+		last = size-1;//min(size-1, size/2+4);
 		for(j = 0; j <= last; j+=2) {
 			cout << "\tx:" << segment[j].x << " y:" << segment[j].y << endl;
 			output_file << "CALL moveto(" << x_to_robot(segment[j].y) << "," << y_to_robot(segment[j].x) << ", punch)" << endl;
-			//output_file << "MOVES origin:TRANS(" << x_to_robot(segment[j].y) << "," << y_to_robot(segment[j].x) << ",punch)" << endl;
-			//output_file << "BREAK" << endl;
 		}
 		
-		//output_file << "MOVES origin:TRANS(" << x_to_robot(segment[last].y) << "," << y_to_robot(segment[last].x) << ",punch)" << endl;
-		//output_file << "BREAK" << endl;
 		output_file << "CALL moveto(" << x_to_robot(segment[last].y) << "," << y_to_robot(segment[last].x) << ", punch)" << endl;
 		output_file << "CALL moveto(" << x_to_robot(segment[last].y) << "," << y_to_robot(segment[last].x) << ", 0)" << endl << endl;
-		//output_file << "MOVES origin:TRANS(" << x_to_robot(segment[last].y) << "," << y_to_robot(segment[last].x) << ",0)" << endl;
-		//output_file << "BREAK" << endl << endl;
 	}
 	
 	output_file << "MOVES origin" << endl;
